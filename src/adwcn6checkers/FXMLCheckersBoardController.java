@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -18,13 +21,39 @@ import javafx.scene.control.Label;
  */
 public class FXMLCheckersBoardController implements Initializable {
     
-    @FXML
-    private Label label;
+    @FXML private Menu gridMenu;
+    @FXML private Menu colorsMenu;
+    @FXML private MenuBar menuBar;
+    @FXML private MenuItem defaultMenuItem;
+    @FXML private MenuItem blueMenuItem;
+    @FXML private MenuItem size3MenuItem;
+    @FXML private MenuItem size8MenuItem;
+    @FXML private MenuItem size10MenuItem;
+    @FXML private MenuItem size16MenuItem;
+    @FXML private VBox vBox;
+
+    @FXML private void handleDefaultMenuItemClick(ActionEvent event) {
+        
+    }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    @FXML private void handleBlueMenuItemClick(ActionEvent event) {
+        
+    }
+    
+    @FXML private void handleSize3MenuItemClick(ActionEvent event) {
+        
+    }
+    
+    @FXML private void handleSize8MenuItemClick(ActionEvent event) {
+        
+    }
+    
+    @FXML private void handleSize10MenuItemClick(ActionEvent event) {
+        
+    }
+    
+    @FXML private void handleSize16MenuItemClick(ActionEvent event) {
+        
     }
     
     @Override
