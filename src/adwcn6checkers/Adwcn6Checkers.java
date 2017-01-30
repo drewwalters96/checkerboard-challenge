@@ -24,13 +24,13 @@ public class Adwcn6Checkers extends Application {
         
         FXMLCheckersBoardController controller = loader.getController();
         
-        // Initialize game board
-        controller.initializeGameBoard();
-        
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
+        
+        // Initialize game board
+        controller.setGameBoard();
     }
 
     /**

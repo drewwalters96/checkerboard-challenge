@@ -96,22 +96,18 @@ public class FXMLCheckersBoardController implements Initializable {
         
     }   
     
-    public void initializeGameBoard() {
+    public void setGameBoard() {
         boardWidth = anchorPane.getWidth();
         boardHeight = anchorPane.getHeight();
         
-        // Create game board
-        setGameBoard();
-    }
-    
-    private void setGameBoard() {
+        // Generate new gameboard
         Checkerboard checkerboard = new Checkerboard(numRows, numCols, boardWidth, boardHeight, lightColor, darkColor);
         AnchorPane gameboard = checkerboard.build();
         
-        anchorPane.getChildren().removeAll();
+        // Clear previous gameboard and set new configuration
+        anchorPane.getChildren().clear();
         anchorPane.getChildren().addAll(gameboard.getChildren());
         
-        /* add switch anchor pane functionality*/
     }
     
 }

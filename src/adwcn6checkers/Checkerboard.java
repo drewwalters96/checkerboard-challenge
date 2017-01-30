@@ -21,7 +21,7 @@ public class Checkerboard {
     private int numCols;
     private int numRows;
   
-    private AnchorPane board = null;
+    private AnchorPane gameboard = null;
     private Color lightColor;
     private Color darkColor;
     
@@ -43,31 +43,34 @@ public class Checkerboard {
         rectangleWidth = boardWidth / numCols;
         rectangleHeight = boardHeight / numRows;
         
-        AnchorPane anchorPane = new AnchorPane();
-         
+        gameboard = new AnchorPane();
+                 
         // Create board squares
-        for (int i = 0; i < numCols; i++) {
-            Rectangle boardSquare = new Rectangle(rectangleWidth, rectangleHeight);
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                Rectangle boardSquare = new Rectangle();
+                boardSquare.setWidth(rectangleWidth);
+                boardSquare.setHeight(rectangleHeight);
+                boardSquare.setX(rectangleWidth * j);
+                boardSquare.setY(rectangleHeight * i);
             
-            // Assign board square color (evens are light, odds are dark)
-            if (i % 2 == 0) {
-                boardSquare.setFill(lightColor);
-            }
-            else {
-                boardSquare.setFill(darkColor);
-            }
+                // Assign board square color (evens are light, odds are dark)
+                if ((j % 2 == 0 && i % 2 != 0) || (j % 2 != 0 && i % 2 == 0)) {
+                    boardSquare.setFill(lightColor);
+                }
+                else {
+                    boardSquare.setFill(darkColor);
+                }
             
-            // Add board square to anchor pane
-            anchorPane.getChildren().add(boardSquare);
-        }
-        
-        board = anchorPane;
-        
-        return board;
+                // Add board square to anchor pane
+                gameboard.getChildren().add(boardSquare);
+            }
+        }    
+        return gameboard;
     }
     
     public AnchorPane getBoard() {
-        return board;
+        return gameboard;
     }
     
     public int getNumRows() {
