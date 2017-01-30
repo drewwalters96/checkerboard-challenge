@@ -26,5 +26,6 @@
             </Menu>
          </menus>
       </MenuBar>
+      <AnchorPane fx:id="anchorPane" prefHeight="559.0" prefWidth="519.0"/>
    </children>
 </VBox>

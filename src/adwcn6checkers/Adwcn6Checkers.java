@@ -19,10 +19,16 @@ public class Adwcn6Checkers extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLCheckersBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLCheckersBoard.fxml"));
+        Parent root = loader.load();
+        
+        FXMLCheckersBoardController controller = loader.getController();
+        
+        // Initialize game board
+        controller.initializeGameBoard();
         
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }

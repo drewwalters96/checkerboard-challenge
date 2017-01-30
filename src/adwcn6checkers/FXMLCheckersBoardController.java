@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -21,6 +23,15 @@ import javafx.scene.layout.VBox;
  */
 public class FXMLCheckersBoardController implements Initializable {
     
+    private double boardHeight;
+    private double boardWidth;
+    private int numCols = 8;
+    private int numRows = 8;
+    
+    private Color lightColor = Color.RED;
+    private Color darkColor = Color.BLACK;
+    
+    @FXML private AnchorPane anchorPane;
     @FXML private Menu gridMenu;
     @FXML private Menu colorsMenu;
     @FXML private MenuBar menuBar;
@@ -33,32 +44,74 @@ public class FXMLCheckersBoardController implements Initializable {
     @FXML private VBox vBox;
 
     @FXML private void handleDefaultMenuItemClick(ActionEvent event) {
+        lightColor = Color.RED;
+        darkColor = Color.BLACK;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @FXML private void handleBlueMenuItemClick(ActionEvent event) {
+        lightColor = Color.SKYBLUE;
+        darkColor = Color.DARKBLUE;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @FXML private void handleSize3MenuItemClick(ActionEvent event) {
+        numRows = 3;
+        numCols = 3;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @FXML private void handleSize8MenuItemClick(ActionEvent event) {
+        numRows = 8;
+        numCols = 8;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @FXML private void handleSize10MenuItemClick(ActionEvent event) {
+        numRows = 10;
+        numCols = 10;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @FXML private void handleSize16MenuItemClick(ActionEvent event) {
+        numRows = 16;
+        numCols = 16;
         
+        // Reset gameboard
+        setGameBoard();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+    }   
+    
+    public void initializeGameBoard() {
+        boardWidth = anchorPane.getWidth();
+        boardHeight = anchorPane.getHeight();
+        
+        // Create game board
+        setGameBoard();
+    }
+    
+    private void setGameBoard() {
+        Checkerboard checkerboard = new Checkerboard(numRows, numCols, boardWidth, boardHeight, lightColor, darkColor);
+        AnchorPane gameboard = checkerboard.build();
+        
+        anchorPane.getChildren().removeAll();
+        anchorPane.getChildren().addAll(gameboard.getChildren());
+        
+        /* add switch anchor pane functionality*/
+    }
     
 }
