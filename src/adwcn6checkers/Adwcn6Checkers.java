@@ -6,6 +6,8 @@
 package adwcn6checkers;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,8 +31,17 @@ public class Adwcn6Checkers extends Application {
         stage.setScene(scene);
         stage.show();
         
+        // Create change listener for width/height
+        ChangeListener<Number> sizeChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            controller.setGameBoard(); 
+        };
+        
+        // Add change listeners to scene
+        scene.widthProperty().addListener(sizeChangeListener);
+        scene.heightProperty().addListener(sizeChangeListener);
+        
         // Initialize game board
-        controller.setGameBoard();
+        controller.ready(scene);
     }
 
     /**

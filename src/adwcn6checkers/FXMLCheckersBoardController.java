@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -30,6 +31,7 @@ public class FXMLCheckersBoardController implements Initializable {
     
     private Color lightColor = Color.RED;
     private Color darkColor = Color.BLACK;
+    private Scene scene;
     
     @FXML private AnchorPane anchorPane;
     @FXML private Menu gridMenu;
@@ -42,6 +44,11 @@ public class FXMLCheckersBoardController implements Initializable {
     @FXML private MenuItem size10MenuItem;
     @FXML private MenuItem size16MenuItem;
     @FXML private VBox vBox;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    
+    }    
 
     @FXML private void handleDefaultMenuItemClick(ActionEvent event) {
         lightColor = Color.RED;
@@ -91,14 +98,14 @@ public class FXMLCheckersBoardController implements Initializable {
         setGameBoard();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }   
+    public void ready(Scene scene) {
+        this.scene = scene;
+        setGameBoard();
+    }
     
     public void setGameBoard() {
-        boardWidth = anchorPane.getWidth();
-        boardHeight = anchorPane.getHeight();
+        boardWidth = scene.getWidth();
+        boardHeight = scene.getHeight() - menuBar.getHeight();
         
         // Generate new gameboard
         Checkerboard checkerboard = new Checkerboard(numRows, numCols, boardWidth, boardHeight, lightColor, darkColor);
@@ -106,8 +113,6 @@ public class FXMLCheckersBoardController implements Initializable {
         
         // Clear previous gameboard and set new configuration
         anchorPane.getChildren().clear();
-        anchorPane.getChildren().addAll(gameboard.getChildren());
-        
-    }
-    
+        anchorPane.getChildren().addAll(gameboard.getChildren()); 
+    }  
 }

@@ -54,12 +54,12 @@ public class Checkerboard {
                 boardSquare.setX(rectangleWidth * j);
                 boardSquare.setY(rectangleHeight * i);
             
-                // Assign board square color (evens are light, odds are dark)
+                // Assign board square color
                 if ((j % 2 == 0 && i % 2 != 0) || (j % 2 != 0 && i % 2 == 0)) {
-                    boardSquare.setFill(lightColor);
+                    boardSquare.setFill(darkColor);
                 }
                 else {
-                    boardSquare.setFill(darkColor);
+                    boardSquare.setFill(lightColor);
                 }
             
                 // Add board square to anchor pane

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="vBox" prefHeight="579.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adwcn6checkers.FXMLCheckersBoardController">
+<VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adwcn6checkers.FXMLCheckersBoardController">
    <children>
       <MenuBar fx:id="menuBar" prefHeight="29.0" prefWidth="519.0">
          <menus>
@@ -26,6 +26,6 @@
             </Menu>
          </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" prefHeight="559.0" prefWidth="519.0"/>
+      <AnchorPane fx:id="anchorPane" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
