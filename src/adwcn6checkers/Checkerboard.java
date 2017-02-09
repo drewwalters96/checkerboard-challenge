@@ -48,6 +48,8 @@ public class Checkerboard {
         // Create board squares
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
+                
+                // Create board square
                 Rectangle boardSquare = new Rectangle();
                 boardSquare.setWidth(rectangleWidth);
                 boardSquare.setHeight(rectangleHeight);

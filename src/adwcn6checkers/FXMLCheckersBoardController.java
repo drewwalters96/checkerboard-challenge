@@ -7,6 +7,8 @@ package adwcn6checkers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,49 +52,53 @@ public class FXMLCheckersBoardController implements Initializable {
     
     }    
 
-    @FXML private void handleDefaultMenuItemClick(ActionEvent event) {
-        lightColor = Color.RED;
-        darkColor = Color.BLACK;
+    @FXML private void changeColor(ActionEvent event) {
+        MenuItem menuItem = (MenuItem)(event.getSource());
+        
+        switch(menuItem.getId()) {
+            case "defaultMenuItem":
+                lightColor = Color.RED;
+                darkColor = Color.BLACK;
+                break;
+            case "blueMenuItem":
+                lightColor = Color.SKYBLUE;
+                darkColor = Color.DARKBLUE;
+                break;
+            default:
+                lightColor = Color.RED;
+                darkColor = Color.BLACK;
+                break;
+        }
         
         // Reset gameboard
         setGameBoard();
     }
     
-    @FXML private void handleBlueMenuItemClick(ActionEvent event) {
-        lightColor = Color.SKYBLUE;
-        darkColor = Color.DARKBLUE;
+    @FXML private void changeSize(ActionEvent event) {
+        MenuItem menuItem = (MenuItem)(event.getSource());
         
-        // Reset gameboard
-        setGameBoard();
-    }
-    
-    @FXML private void handleSize3MenuItemClick(ActionEvent event) {
-        numRows = 3;
-        numCols = 3;
-        
-        // Reset gameboard
-        setGameBoard();
-    }
-    
-    @FXML private void handleSize8MenuItemClick(ActionEvent event) {
-        numRows = 8;
-        numCols = 8;
-        
-        // Reset gameboard
-        setGameBoard();
-    }
-    
-    @FXML private void handleSize10MenuItemClick(ActionEvent event) {
-        numRows = 10;
-        numCols = 10;
-        
-        // Reset gameboard
-        setGameBoard();
-    }
-    
-    @FXML private void handleSize16MenuItemClick(ActionEvent event) {
-        numRows = 16;
-        numCols = 16;
+        switch(menuItem.getId()) {
+            case "size3MenuItem":
+                numRows = 3;
+                numCols = 3;
+                break;
+            case "size8MenuItem":
+                numRows = 8;
+                numCols = 8;
+                break;
+            case "size10MenuItem":
+                numRows = 10;
+                numCols = 10;
+                break;
+            case "size16MenuItem":
+                numRows = 16;
+                numCols = 16;
+                break;
+            default:
+                numRows = 8;
+                numCols = 8;
+                break;
+        }
         
         // Reset gameboard
         setGameBoard();
@@ -100,6 +106,16 @@ public class FXMLCheckersBoardController implements Initializable {
     
     public void ready(Scene scene) {
         this.scene = scene;
+        
+        // Create change listener for width/height
+        ChangeListener<Number> sizeChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            setGameBoard(); 
+        };
+        
+        // Add change listeners to scene
+        scene.widthProperty().addListener(sizeChangeListener);
+        scene.heightProperty().addListener(sizeChangeListener);
+        
         setGameBoard();
     }
     
