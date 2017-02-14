@@ -26,6 +26,8 @@
             </Menu>
          </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" VBox.vgrow="ALWAYS" />
+      <VBox fx:id="vBoxDisplayArea">
+        <AnchorPane fx:id="anchorPane" VBox.vgrow="ALWAYS" />
+      </VBox>
    </children>
 </VBox>

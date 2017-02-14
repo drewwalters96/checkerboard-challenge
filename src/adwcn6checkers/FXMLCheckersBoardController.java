@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -46,6 +47,7 @@ public class FXMLCheckersBoardController implements Initializable {
     @FXML private MenuItem size10MenuItem;
     @FXML private MenuItem size16MenuItem;
     @FXML private VBox vBox;
+    @FXML private VBox vBoxDisplayArea;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,16 +121,26 @@ public class FXMLCheckersBoardController implements Initializable {
         setGameBoard();
     }
     
-    public void setGameBoard() {
-        boardWidth = scene.getWidth();
-        boardHeight = scene.getHeight() - menuBar.getHeight();
+    public void setGameBoard() {   
+        boardWidth = vBox.getWidth();
+        boardHeight = vBox.getHeight() - menuBar.getHeight();
         
         // Generate new gameboard
         Checkerboard checkerboard = new Checkerboard(numRows, numCols, boardWidth, boardHeight, lightColor, darkColor);
         AnchorPane gameboard = checkerboard.build();
         
-        // Clear previous gameboard and set new configuration
+        // Clear previous gameboard 
         anchorPane.getChildren().clear();
-        anchorPane.getChildren().addAll(gameboard.getChildren()); 
+        
+        // Calculate horizontal and vertical padding using remaining space
+        double horizontalPadding = (boardWidth - (checkerboard.getRectangleWidth() * checkerboard.getNumCols())) / 2;
+        double verticalPadding = (boardHeight - (checkerboard.getRectangleHeight() * checkerboard.getNumRows())) / 2;
+        
+        // Add padding
+        Insets insets = new Insets(verticalPadding, horizontalPadding, verticalPadding, horizontalPadding);
+        vBoxDisplayArea.setPadding(insets);
+        
+        // Set new gameboard configuration
+        anchorPane.getChildren().addAll(gameboard); 
     }  
 }

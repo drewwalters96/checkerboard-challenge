@@ -39,9 +39,16 @@ public class Checkerboard {
     }
     
     public AnchorPane build() {
-        // Calculate the max width/height of the board squares
-        rectangleWidth = boardWidth / numCols;
-        rectangleHeight = boardHeight / numRows;
+        // Calculate the max width and height of the board squares using the 
+        // smallest board dimension
+        if (boardWidth < boardHeight) {
+            rectangleWidth = boardWidth / numCols;
+            rectangleHeight = boardWidth / numRows;
+        }
+        else {
+           rectangleWidth = boardHeight / numCols;
+           rectangleHeight = boardHeight / numRows; 
+        }
         
         gameboard = new AnchorPane();
                  
@@ -67,7 +74,7 @@ public class Checkerboard {
                 // Add board square to anchor pane
                 gameboard.getChildren().add(boardSquare);
             }
-        }    
+        }            
         return gameboard;
     }
     
